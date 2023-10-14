@@ -8,6 +8,7 @@ import json
 class BaseModel():
     """ thee base Model for id and create&update time"""
     def __init__(self, *args, **kwargs):
+        """ the init function to intalize """
         if kwargs:
             for key, value in kwargs.items():
                 if key != '__class__':
