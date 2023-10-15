@@ -23,7 +23,7 @@ class BaseModel():
     def __str__(self):
         """ the string human representation of the object """
 
-        return f"[{__class__.__name__}] ({self.id} {self.__dict__})"
+        return f"[{__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """ the Save method to update the updated_at """
@@ -35,9 +35,9 @@ class BaseModel():
         dictt = {
                 'my_number': self.my_number,
                 'name': self.name,
+                '__class__': __class__.__name__,
                 'updated_at': self.updated_at.isoformat(),
                 'id': self.id,
                 'created_at': self.created_at.isoformat(),
-                '__class__': __class__.__name__,
                 }
         return dictt
