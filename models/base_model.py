@@ -31,13 +31,18 @@ class BaseModel():
         #storge.save()
 
     def to_dict(self):
-        """ first piece of the serialization/deserialization process"""
-        dictt = {
-                'my_number': self.my_number,
-                'name': self.name,
-                '__class__': __class__.__name__,
-                'updated_at': self.updated_at.isoformat(),
-                'id': self.id,
-                'created_at': self.created_at.isoformat(),
-                }
-        return dictt
+        """ Convert all instance attributes to a dictionary """
+        instance_dict = {}
+
+        for key, value in self.__dict__.items():
+            # Convert created_at and updated_at to ISO format
+            if key in ('created_at', 'updated_at'):
+                instance_dict[key] = value.isoformat()
+            else:
+                instance_dict[key] = value
+
+            # Add the __class__ key
+        instance_dict['__class__'] = self.__class__.__name__
+
+        return instance_dict
+
