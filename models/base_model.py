@@ -23,7 +23,7 @@ class BaseModel():
     def __str__(self):
         """ the string human representation of the object """
 
-        return f"[{__class__.__name__}] ({self.id}) {self.__dict__})"
+        return f"[{__class__.__name__}] ({self.id} {self.__dict__})"
 
     def save(self):
         """ the Save method to update the updated_at """
