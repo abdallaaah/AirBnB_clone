@@ -3,13 +3,14 @@ import unittest
 from datetime import datetime
 from . import BaseModel
 
+
 class TestBaseModel(unittest.TestCase):
 
     def test_id_generation(self):
         obj1 = BaseModel()
         obj2 = BaseModel()
         self.assertNotEqual(obj1.id, obj2.id)
-    
+
     def test_created_at_and_updated_at(self):
         obj = BaseModel()
         self.assertIsInstance(obj.created_at, datetime)
@@ -35,6 +36,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn('updated_at', obj_dict)
         self.assertEqual(obj_dict['updated_at'], obj.updated_at.isoformat())
 
+
 if __name__ == '__main__':
     unittest.main()
-
