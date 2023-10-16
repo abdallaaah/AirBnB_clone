@@ -4,7 +4,7 @@ import json
 import os
 
 
-class FileStorge():
+class FileStorage():
     """ class with private attributes and seralize and de"""
     __file_path = "file.json"
     __objects = {}
