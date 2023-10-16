@@ -4,8 +4,9 @@ import uuid
 from datetime import datetime as date
 import json
 import sys
-sys.path.append('/AirBnB_clone')
 from models import storage
+sys.path.append('/AirBnB_clone')
+
 
 class BaseModel():
     """ thee base Model for id and create&update time"""
@@ -29,12 +30,11 @@ class BaseModel():
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
-        """ the Save method to update the updated_at and save to FileStorage """
+        """ the Save method to update the updated_at FileStorage """
         self.updated_at = date.now()
         if hasattr(self, '__class__') and hasattr(storage, 'new'):
             storage.new(self)
             storage.save()
-
 
     def to_dict(self):
         """ Convert all instance attributes to a dictionary """
