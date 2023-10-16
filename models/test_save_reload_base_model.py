@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-#from . import storage
+import sys
+sys.path.append('/AirBnB_clone')
+from models import storage
 from base_model import BaseModel
 
 all_objs = storage.all()

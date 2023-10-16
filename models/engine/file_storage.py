@@ -18,22 +18,21 @@ class FileStorge():
         class_name = obj.__class__.__name__
         class_id = obj.id
         key = f"{class_name}.{class_id}"
+        self.__objects[key] = obj
 
     def save(self):
         """serializes __objects to the JSON file (path: __file_path)"""
-        seralized_obj = {}
-        for key, obj in self.__objects.items():
-            seralized_obj[key] = obj.to_dict()
-        with open(__file_path, 'w', encdoing='utf-8') as file_json:
-            json.dump(seralized_obj, file_json)
+        with open(self.__file_path, 'w', encoding='utf-8') as file_json:
+            json.dump(self.__objects, file_json, default=lambda obj: obj.to_dict())
     
-    def relod(self):
+    def reload(self):
         """ deserializes the JSON file to __objects"""
         if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r', encoding='utf-8') as file_json:
                 data = file_json.read()
                 try:
-                    self.__objects = json.load(data)
+                    self.__objects = json.loads(data)
                 except json.JSONDecodeError:
-                    self__.objects = {}
+                    print("error from expected")
+                    self.__objects = {}
 
