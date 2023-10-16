@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import unittest
 import os
-from .base_model import BaseModel
-from models.engine.file_storage import FileStorage
+from . import BaseModel
+from . import FileStorage
 
 class TestFileStorage(unittest.TestCase):
     def setUp(self):
