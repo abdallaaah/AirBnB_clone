@@ -9,8 +9,8 @@ project_dir = os.path.dirname(current_dir)
 sys.path.append(project_dir)
 
 # Now you can import modules from your project directory
-from .engine.file_storage import FileStorge
+from .engine.file_storage import FileStorage
 
-storage = FileStorge()
+storage = FileStorage()
 storage.reload()
 
