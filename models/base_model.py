@@ -17,6 +17,7 @@ class BaseModel():
                 if key != '__class__':
                     if key in ('created_at', 'updated_at'):
                         value = date.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                    print('i am before the seeeeeeeeeeeeeeeeet')
                     setattr(self, key, value)
             storage.new(self)
         else:
@@ -34,6 +35,7 @@ class BaseModel():
         self.updated_at = date.now()
         if hasattr(self, '__class__') and hasattr(storage, 'new'):
             storage.new(self)
+            print('zzzz')
             storage.save()
 
     def to_dict(self):
