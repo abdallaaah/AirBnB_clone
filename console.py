@@ -96,38 +96,20 @@ class HBNBCommand(cmd.Cmd):
         elif len(words) < 4:
             print('** value missing **')
         else:
-            class_name = words[0]
-            instance_id = words[1]
-
-            # Check if the class exists
-            if not hasattr(base_model, class_name):
+            if not hasattr(base_model, words[0]):
                 print("** class doesn't exist **")
-                return
-
-            # Construct the object search key
-            obj_search = f"{class_name}.{instance_id}"
-            all_objects = storage.all()
-
-            # Check if the object exists
-            if obj_search in all_objects:
-                # Create a new instance of the class with the provided ID
-                obj = getattr(base_model, class_name)(id=instance_id)
-
-                # Construct the kwargs dynamically
-                kwargs = {'id': obj.id}
-                for i in range(3, len(words), 2):
-                    kwargs[words[i - 1]] = words[i]
-
-                # Create a new instance with updated attributes
-                updated_obj = getattr(base_model, class_name)(**kwargs)
-                updated_obj.save()
-                storage.save()
-
-                print('update')
-                print(updated_obj)
-                print(storage.all())
             else:
-                print('** no instance found **')
+                obj_search = words[1]
+                obj_search = ('BaseModel.') + str(obj_search)
+                all_objects = storage.all()
+                if obj_search in all_objects:
+                    obj = base_model.BaseModel(id=words[1])
+                    x = base_model.BaseModel(id=obj.id, first_name=words[3])
+                    x.save()
+                    storage.save()
+                else:
+                    print('** no instance found **')
+
 
     def emptyline(self):
         """Do nothing when an empty line is entered"""
